@@ -20,11 +20,18 @@
 
 <main class="flex flex-1 grow flex-col box-border">
   <slot />
+  <pre>{JSON.stringify(process.env, null, 2)}</pre>
 </main>
 
 <footer class="flex flex-col justify-center items-center py-3 text-xs">
   <p>
-    visit <a class="font-bold" href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit
+    Version:
+    <a
+      class="font-bold"
+      href="https://github.com/svenliebig/svelte-fate-core-skill-tree/commit/{process.env
+        .COMMIT_REVISION}">{process.env.COMMIT_REVISION}</a
+    >
+    {process.env.NOW_REGION}
   </p>
 </footer>
 

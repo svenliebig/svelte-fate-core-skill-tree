@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "dev": "svelte-kit dev",
-    "build": "svelte-kit build",
+    "dev": "export COMMIT_REVISION=$(git rev-parse HEAD) && svelte-kit dev",
+    "build": "export COMMIT_REVISION=$(git rev-parse HEAD) && svelte-kit build",
     "package": "svelte-kit package",
     "preview": "svelte-kit preview",
     "prepare": "svelte-kit sync",
