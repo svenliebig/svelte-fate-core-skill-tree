@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Header from '$lib/header/Header.svelte';
   import { webVitals } from '$lib/vitals';
   import { browser } from '$app/env';

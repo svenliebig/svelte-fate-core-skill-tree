@@ -11,11 +11,7 @@ function getConnectionSpeed() {
     : '';
 }
 
-/**
- * @param {import("web-vitals").Metric} metric
- * @param {{ params: { [s: string]: any; } | ArrayLike<any>; path: string; analyticsId: string; debug: boolean; }} options
- */
-function sendToAnalytics(metric, options) {
+function sendToAnalytics(metric: import("web-vitals").Metric, options: { params: { [s: string]: any; } | ArrayLike<any>; path: string; analyticsId: string; debug: boolean; }) {
   const page = Object.entries(options.params).reduce(
     (acc, [key, value]) => acc.replace(value, `[${key}]`),
     options.path
@@ -50,10 +46,7 @@ function sendToAnalytics(metric, options) {
     });
 }
 
-/**
- * @param {any} options
- */
-export function webVitals(options) {
+export function webVitals(options: any) {
   try {
     getFID((metric) => sendToAnalytics(metric, options));
     getTTFB((metric) => sendToAnalytics(metric, options));
