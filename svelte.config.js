@@ -12,7 +12,9 @@ const config = {
     },
     vite: {
       define: {
-        'import.meta.env.VERCEL_ANALYTICS_ID': JSON.stringify(process.env.VERCEL_ANALYTICS_ID)
+        'import.meta.env.VERCEL_ANALYTICS_ID': JSON.stringify(process.env.VERCEL_ANALYTICS_ID),
+        'import.meta.env.VERCEL_GIT_COMMIT_SHA': JSON.stringify(process.env.VERCEL_GIT_COMMIT_SHA),
+        'import.meta.env.VITE_SVELTEKIT_APP_VERSION': JSON.stringify(process.env.VITE_SVELTEKIT_APP_VERSION)
       }
     }
   },
