@@ -1,20 +1,17 @@
-<script>
+<script lang="ts">
   import { enhance } from '$lib/form';
   import { scale } from 'svelte/transition';
   import { flip } from 'svelte/animate';
 
-  /**
-   * @typedef {{
-   *   uid: string;
-   *   created_at: Date;
-   *   text: string;
-   *   done: boolean;
-   *   pending_delete: boolean;
-   * }} Todo
-   */
+  type Todo = {
+     uid: string;
+     created_at: Date;
+     text: string;
+     done: boolean;
+     pending_delete: boolean;
+  }
 
-  /** @type {Todo[]} */
-  export let todos;
+  export let todos: Array<Todo>;
 </script>
 
 <svelte:head>
