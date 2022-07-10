@@ -15,12 +15,19 @@
       <path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
     </svg>
     <ul>
-      <li class:active={$page.url.pathname === '/'}><a sveltekit:prefetch href="/">Home</a></li>
+      <li class:active={$page.url.pathname === '/'}><a class="flex" sveltekit:prefetch href="/">Home</a></li>
       <li class:active={$page.url.pathname === '/about'}>
-        <a sveltekit:prefetch href="/about">About</a>
+        <a class="flex" sveltekit:prefetch href="/about">About</a>
       </li>
       <li class:active={$page.url.pathname === '/todos'}>
-        <a sveltekit:prefetch href="/todos">Todos</a>
+        <a class="flex" sveltekit:prefetch href="/todos">Todos</a>
+      </li>
+      <li class:active={$page.url.pathname === '/skilltree'}>
+        <a class="flex" sveltekit:prefetch href="/skilltree">Skilltree</a>
+      </li>
+      <li>
+        <button class="dark:hidden" on:click={() => document.body.classList.add("dark")}>Dark Side</button>
+        <button class="hidden dark:flex" on:click={() => document.body.classList.remove("dark")}>Light Side</button>
       </li>
     </ul>
     <svg viewBox="0 0 2 3" aria-hidden="true">
@@ -104,8 +111,7 @@
     border-top: var(--size) solid var(--accent-color);
   }
 
-  nav a {
-    display: flex;
+  nav a, nav button {
     height: 100%;
     align-items: center;
     padding: 0 1em;
