@@ -6,7 +6,7 @@
   import '../app.css';
 
   let analyticsId = import.meta.env.VERCEL_ANALYTICS_ID;
-  const buildDate = new Date(import.meta.env.VITE_SVELTEKIT_APP_VERSION);
+  const buildDate = new Date(parseInt(import.meta.env.VITE_SVELTEKIT_APP_VERSION));
   const timestamp = `${buildDate.toLocaleDateString()} - ${buildDate.toLocaleTimeString()}`;
 
   $: if (browser && analyticsId) {
