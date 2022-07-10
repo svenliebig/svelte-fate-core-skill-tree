@@ -6,6 +6,8 @@
   import '../app.css';
 
   let analyticsId = import.meta.env.VERCEL_ANALYTICS_ID;
+  const buildDate = new Date(import.meta.env.VITE_SVELTEKIT_APP_VERSION);
+  const timestamp = `${buildDate.toLocaleDateString()} - ${buildDate.toLocaleTimeString()}`;
 
   $: if (browser && analyticsId) {
     webVitals({
@@ -20,18 +22,18 @@
 
 <main class="flex flex-1 grow flex-col box-border">
   <slot />
-  <pre>{JSON.stringify(import.meta.env, null, 2)}</pre>
 </main>
 
 <footer class="flex flex-col justify-center items-center py-3 text-xs">
   <p>
-    Version:
+    Version
     <a
       class="font-bold"
       href="https://github.com/svenliebig/svelte-fate-core-skill-tree/commit/{import.meta.env
         .VERCEL_GIT_COMMIT_SHA}">{import.meta.env.VERCEL_GIT_COMMIT_SHA}</a
     >
-    {import.meta.env.VITE_SVELTEKIT_APP_VERSION}
+    from
+    {timestamp}
   </p>
 </footer>
 
