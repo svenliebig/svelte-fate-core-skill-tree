@@ -1,3 +1,5 @@
 {
-  "prettier.enable": true
+  "prettier.enable": true,
+  // https://stackoverflow.com/questions/47607602/how-to-add-a-tailwind-css-rule-to-css-checker
+  "css.customData": [".vscode/css_custom_data.json"]
 }
