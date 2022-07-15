@@ -64,11 +64,11 @@
   <div class="w-full px-1">
     <SectionHeader>Allgemeines</SectionHeader>
     <div class="w-full flex">
-      <div class="w-3/4 lg:w-5/6 ">
+      <div class="w-4/6 sm:w-3/4 lg:w-5/6 ">
         <Input label="Name" bind:value={$formStore.name} inline />
         <Textarea label="Beschreibung" bind:value={$formStore.beschreibung} class="h-20" />
       </div>
-      <div class="w-1/4 lg:w-1/6 pl-2 pb-2">
+      <div class="w-2/6 sm:w-1/4 lg:w-1/6 pl-2 pb-2">
         <Textarea label="Erhohlungsrate" class="h-full" />
       </div>
     </div>
@@ -142,7 +142,7 @@
     <SectionHeader>Stunts</SectionHeader>
     <Textarea label="Stunts" bind:value={$formStore.stunts} class="h-36" hideLabel />
   </div>
-  <div class="w-full sm:w-1/2 lg:w-1/3 flex flex-col px-1">
+  <div class="w-full sm:w-1/3 lg:w-1/4 flex flex-col px-1">
     <div class="w-full">
       <SectionHeader>Körperlicher Stress (Kraft)</SectionHeader>
       <div class="w-full flex">
@@ -162,15 +162,15 @@
       </div>
     </div>
   </div>
-  <div class="w-full sm:w-1/2 lg:w-2/3 px-1">
+  <div class="w-full sm:w-2/3 lg:w-3/4 px-1">
     <SectionHeader>Konsequenzen</SectionHeader>
-    <div class="w-full flex">
+    <div class="w-full flex flex-col sm:flex-row">
       <div class="w-full sm:w-1/2">
         <Input label="Leicht" inline />
         <Input label="Mittel" inline />
         <Input label="Schwer" inline />
       </div>
-      <div class="w-full sm:w-1/2 pl-2">
+      <div class="w-full sm:w-1/2 sm:pl-2">
         <Input label="Leicht" inline disabled />
         <Input label="Mittel" inline disabled />
         <Input label="Schwer" inline disabled />

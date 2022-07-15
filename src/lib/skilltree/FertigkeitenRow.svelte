@@ -7,13 +7,14 @@
   export let values: Array<{ row: number; disabled: boolean }>;
 </script>
 
-<fieldset class="w-full flex">
-  <legend class="w-1/5 text-xs items-center justify-end inline-flex pt-2 font-bold text-sky-600"
+<fieldset class="w-full flex flex-col sm:flex-row">
+  <legend
+    class="w-full sm:w-1/5 text-xs items-center sm:justify-end inline-flex pt-2 font-bold text-sky-600"
     >{label}</legend
   >
-  <div class="w-4/5 flex">
+  <div class="w-full sm:w-4/5 flex">
     {#each values as { disabled, row }, index}
-      <div class="w-1/5 pl-2">
+      <div class="w-1/5 {index === 0 ? 'sm:pl-2' : 'pl-2'}">
         <Input {disabled} bind:value={$formStore.fertigkeiten[row][index]} />
       </div>
     {/each}
