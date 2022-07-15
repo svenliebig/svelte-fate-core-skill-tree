@@ -6,10 +6,8 @@
 <header class="flex w-full justify-between self-center">
   <nav>
     <ul class="flex h-12">
-      <NavItem path="/">Home</NavItem>
-      <NavItem path="/about">About</NavItem>
-      <NavItem path="/todos">Todos</NavItem>
       <NavItem path="/skilltree">Skilltree</NavItem>
+      <NavItem path="/about">About</NavItem>
     </ul>
   </nav>
 

@@ -20,7 +20,8 @@
   --column-margin-top: 4rem;
 }
 
-body, body > div {
+body,
+body > div {
   min-height: 100vh;
 }
 
@@ -48,8 +49,29 @@ a:hover {
   text-decoration: underline;
 }
 
-button:focus:not(:focus-visible), input:focus {
+button:focus:not(:focus-visible),
+input:focus,
+textarea:focus {
   outline: none;
+}
+
+fieldset {
+  margin-inline-end: 0px;
+  padding-block-start: 0;
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+  padding-block-end: 0;
+  min-inline-size: unset;
+}
+
+legend {
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+  float: left;
+}
+
+.checkbox-form label {
+  text-shadow: 1px 1px 3px white;
 }
 
 @media (min-width: 720px) {
