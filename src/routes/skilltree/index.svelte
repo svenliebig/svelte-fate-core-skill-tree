@@ -4,6 +4,53 @@
   import Input from '$lib/skilltree/Input.svelte';
   import SectionHeader from '$lib/skilltree/SectionHeader.svelte';
   import Textarea from '$lib/skilltree/Textarea.svelte';
+  import type { SkilltreeForm } from './model';
+  import { formStore, getForm } from '../../lib/skilltree/store';
+  import { onMount } from 'svelte';
+
+  let objForm: any;
+
+  const unsubscribe = formStore.subscribe((value) => {
+    objForm = value;
+  });
+
+  let form: SkilltreeForm = {
+    name: '',
+    beschreibung: '',
+    konzept: '',
+    dilemma: '',
+    aspekte: ['', '', ''],
+    fertigkeiten: [
+      ['', '', '', '', ''],
+      ['', '', '', '', ''],
+      ['', '', '', '', ''],
+      ['', '', '', '', ''],
+      ['', '', '', '', '']
+    ],
+    extras: '',
+    stunts: ''
+  };
+
+  onMount(() => {
+    const search = (() => new URLSearchParams(window.location.search))();
+    const treeQuery = search.get('tree');
+
+    if (treeQuery) {
+      try {
+        const tree = JSON.parse(decodeURIComponent(treeQuery));
+        $formStore = tree;
+      } catch (e) {
+        console.error(e);
+      }
+    }
+  });
+
+  $formStore = form;
+
+  $: {
+    // console.log('objForm:');
+    // console.log(objForm);
+  }
 </script>
 
 <svelte:head>
@@ -18,8 +65,8 @@
     <SectionHeader>Allgemeines</SectionHeader>
     <div class="w-full flex">
       <div class="w-3/4 lg:w-5/6 ">
-        <Input label="Name" inline />
-        <Textarea label="Beschreibung" class="h-20" />
+        <Input label="Name" bind:value={$formStore.name} inline />
+        <Textarea label="Beschreibung" bind:value={$formStore.beschreibung} class="h-20" />
       </div>
       <div class="w-1/4 lg:w-1/6 pl-2 pb-2">
         <Textarea label="Erhohlungsrate" class="h-full" />
@@ -28,72 +75,72 @@
   </div>
   <div class="w-full lg:w-1/3 px-1">
     <SectionHeader>Aspekte</SectionHeader>
-    <Input label="Konzept" inline />
-    <Input label="Dilemma" inline />
-    <Input inline />
-    <Input inline />
-    <Input inline />
+    <Input label="Konzept" bind:value={$formStore.konzept} inline />
+    <Input label="Dilemma" bind:value={$formStore.dilemma} inline />
+    <Input inline bind:value={$formStore.aspekte[0]} />
+    <Input inline bind:value={$formStore.aspekte[1]} />
+    <Input inline bind:value={$formStore.aspekte[2]} />
   </div>
   <div class="w-full lg:w-2/3 px-1">
     <SectionHeader>Fertigkeiten</SectionHeader>
     <FertigkeitenRow
       label="Hervorragen (+5)"
       values={[
-        { disabled: true, value: '' },
-        { disabled: true, value: '' },
-        { disabled: true, value: '' },
-        { disabled: true, value: '' },
-        { disabled: true, value: '' }
+        { disabled: true, row: 0 },
+        { disabled: true, row: 0 },
+        { disabled: true, row: 0 },
+        { disabled: true, row: 0 },
+        { disabled: true, row: 0 }
       ]}
     />
     <FertigkeitenRow
       label="Großartig (+4)"
       values={[
-        { disabled: false, value: '' },
-        { disabled: true, value: '' },
-        { disabled: true, value: '' },
-        { disabled: true, value: '' },
-        { disabled: true, value: '' }
+        { disabled: false, row: 1 },
+        { disabled: true, row: 1 },
+        { disabled: true, row: 1 },
+        { disabled: true, row: 1 },
+        { disabled: true, row: 1 }
       ]}
     />
     <FertigkeitenRow
       label="Gut (+3)"
       values={[
-        { disabled: false, value: '' },
-        { disabled: false, value: '' },
-        { disabled: true, value: '' },
-        { disabled: true, value: '' },
-        { disabled: true, value: '' }
+        { disabled: false, row: 2 },
+        { disabled: false, row: 2 },
+        { disabled: true, row: 2 },
+        { disabled: true, row: 2 },
+        { disabled: true, row: 2 }
       ]}
     />
     <FertigkeitenRow
       label="Ordentlich (+2)"
       values={[
-        { disabled: false, value: '' },
-        { disabled: false, value: '' },
-        { disabled: false, value: '' },
-        { disabled: true, value: '' },
-        { disabled: true, value: '' }
+        { disabled: false, row: 3 },
+        { disabled: false, row: 3 },
+        { disabled: false, row: 3 },
+        { disabled: true, row: 3 },
+        { disabled: true, row: 3 }
       ]}
     />
     <FertigkeitenRow
       label="Durchschnittlich (+1)"
       values={[
-        { disabled: false, value: '' },
-        { disabled: false, value: '' },
-        { disabled: false, value: '' },
-        { disabled: false, value: '' },
-        { disabled: true, value: '' }
+        { disabled: false, row: 4 },
+        { disabled: false, row: 4 },
+        { disabled: false, row: 4 },
+        { disabled: false, row: 4 },
+        { disabled: true, row: 4 }
       ]}
     />
   </div>
   <div class="w-full lg:w-1/2 px-1">
     <SectionHeader>Extras</SectionHeader>
-    <Textarea label="Extras" class="h-36" hideLabel />
+    <Textarea label="Extras" bind:value={$formStore.extras} class="h-36" hideLabel />
   </div>
   <div class="w-full lg:w-1/2 px-1">
     <SectionHeader>Stunts</SectionHeader>
-    <Textarea label="Stunts" class="h-36" hideLabel />
+    <Textarea label="Stunts" bind:value={$formStore.stunts} class="h-36" hideLabel />
   </div>
   <div class="w-full sm:w-1/2 lg:w-1/3 flex flex-col px-1">
     <div class="w-full">
@@ -129,6 +176,16 @@
         <Input label="Schwer" inline disabled />
       </div>
     </div>
+  </div>
+  <div class="w-full flex justify-end mt-5 px-1 items-end">
+    <button
+      class="border-2 bg-white text-sky-700 rounded-md px-2 py-0.5 border-sky-700"
+      on:click={() => {
+        const json = JSON.stringify($getForm);
+        const uriValue = encodeURIComponent(json);
+        window.location.assign(`${location.origin}${location.pathname}?tree=${uriValue}`);
+      }}>Save</button
+    >
   </div>
 </div>
 

@@ -4,6 +4,7 @@
   export let id: string = generateId();
   export let label: string;
   export let inline: boolean = false;
+  export let value: string = '';
 
   export let hideLabel: boolean = false;
 
@@ -32,5 +33,6 @@
       ? 'rounded-md'
       : 'rounded-b-md'} dark:caret-slate-900 dark:text-slate-900"
     type="text"
+    bind:value
   />
 </div>

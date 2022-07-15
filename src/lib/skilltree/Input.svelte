@@ -5,6 +5,7 @@
   export let label: string = '';
   export let inline: boolean = false;
   export let disabled: boolean = false;
+  export let value: string = '';
 
   let clazz: string = '';
   export { clazz as class };
@@ -35,5 +36,6 @@
       : 'rounded-md'} dark:caret-slate-900 dark:text-slate-900"
     type="text"
     {disabled}
+    bind:value
   />
 </div>
