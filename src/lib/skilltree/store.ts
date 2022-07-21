@@ -16,6 +16,7 @@ export let formStore = writable<SkilltreeForm>({
 	],
 	extras: "",
 	stunts: "",
+	level: 0
 })
 
 export const getForm = derived(formStore, (v) => v)

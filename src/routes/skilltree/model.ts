@@ -13,4 +13,5 @@ export type SkilltreeForm = {
 		[string, string, string, string, string],
 		[string, string, string, string, string]
 	]
+	level: number
 }

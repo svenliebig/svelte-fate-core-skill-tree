@@ -28,7 +28,8 @@
       ['', '', '', '', '']
     ],
     extras: '',
-    stunts: ''
+    stunts: '',
+    level: 0
   };
 
   onMount(() => {
@@ -82,25 +83,35 @@
     <Input inline bind:value={$formStore.aspekte[2]} />
   </div>
   <div class="w-full lg:w-2/3 px-1">
-    <SectionHeader>Fertigkeiten</SectionHeader>
+    <SectionHeader class="flex justify-between">
+      <span>
+        Fertigkeiten (Level {$formStore.level})
+      </span>
+      <span class="block">
+        <button on:click={() => $formStore.level++}>Level +</button><span class="mx-2">|</span>
+        <button on:click={() => ($formStore.level <= 0 ? undefined : $formStore.level--)}
+          >Level -</button
+        >
+      </span>
+    </SectionHeader>
     <FertigkeitenRow
       label="Hervorragen (+5)"
       values={[
-        { disabled: true, row: 0 },
-        { disabled: true, row: 0 },
-        { disabled: true, row: 0 },
-        { disabled: true, row: 0 },
-        { disabled: true, row: 0 }
+        { disabled: $formStore.level < 5, row: 0 },
+        { disabled: $formStore.level < 9, row: 0 },
+        { disabled: $formStore.level < 11, row: 0 },
+        { disabled: $formStore.level < 14, row: 0 },
+        { disabled: $formStore.level < 15, row: 0 }
       ]}
     />
     <FertigkeitenRow
       label="Großartig (+4)"
       values={[
         { disabled: false, row: 1 },
-        { disabled: true, row: 1 },
-        { disabled: true, row: 1 },
-        { disabled: true, row: 1 },
-        { disabled: true, row: 1 }
+        { disabled: $formStore.level < 4, row: 1 },
+        { disabled: $formStore.level < 8, row: 1 },
+        { disabled: $formStore.level < 11, row: 1 },
+        { disabled: $formStore.level < 13, row: 1 }
       ]}
     />
     <FertigkeitenRow
@@ -108,9 +119,9 @@
       values={[
         { disabled: false, row: 2 },
         { disabled: false, row: 2 },
-        { disabled: true, row: 2 },
-        { disabled: true, row: 2 },
-        { disabled: true, row: 2 }
+        { disabled: $formStore.level < 3, row: 2 },
+        { disabled: $formStore.level < 7, row: 2 },
+        { disabled: $formStore.level < 10, row: 2 }
       ]}
     />
     <FertigkeitenRow
@@ -119,8 +130,8 @@
         { disabled: false, row: 3 },
         { disabled: false, row: 3 },
         { disabled: false, row: 3 },
-        { disabled: true, row: 3 },
-        { disabled: true, row: 3 }
+        { disabled: $formStore.level < 2, row: 3 },
+        { disabled: $formStore.level < 6, row: 3 }
       ]}
     />
     <FertigkeitenRow
@@ -130,7 +141,7 @@
         { disabled: false, row: 4 },
         { disabled: false, row: 4 },
         { disabled: false, row: 4 },
-        { disabled: true, row: 4 }
+        { disabled: $formStore.level < 1, row: 4 }
       ]}
     />
   </div>
@@ -145,20 +156,24 @@
   <div class="w-full sm:w-1/3 lg:w-1/4 flex flex-col px-1">
     <div class="w-full">
       <SectionHeader>Körperlicher Stress (Kraft)</SectionHeader>
-      <div class="w-full flex">
-        <Checkbox label="1" class="mr-3" />
-        <Checkbox label="2" class="mr-3" />
-        <Checkbox label="3" class="mr-3" disabled />
-        <Checkbox label="4" class="mr-3" disabled />
+      <div class="w-full flex justify-between">
+        <Checkbox label="1" />
+        <Checkbox label="2" />
+        <Checkbox label="3" />
+        <Checkbox label="4" />
+        <Checkbox label="5" />
+        <Checkbox label="6" />
       </div>
     </div>
     <div class="w-full">
       <SectionHeader>Gestiger Stress (Wille)</SectionHeader>
-      <div class="w-full flex">
-        <Checkbox label="1" class="mr-3" />
-        <Checkbox label="2" class="mr-3" />
-        <Checkbox label="3" class="mr-3" disabled />
-        <Checkbox label="4" class="mr-3" disabled />
+      <div class="w-full flex justify-between">
+        <Checkbox label="1" />
+        <Checkbox label="2" />
+        <Checkbox label="3" />
+        <Checkbox label="4" />
+        <Checkbox label="5" />
+        <Checkbox label="6" />
       </div>
     </div>
   </div>
@@ -171,9 +186,7 @@
         <Input label="Schwer" inline />
       </div>
       <div class="w-full sm:w-1/2 sm:pl-2">
-        <Input label="Leicht" inline disabled />
-        <Input label="Mittel" inline disabled />
-        <Input label="Schwer" inline disabled />
+        <Input label="Leicht" inline />
       </div>
     </div>
   </div>
