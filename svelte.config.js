@@ -19,7 +19,7 @@ const config = {
 				'import.meta.env.VITE_SVELTEKIT_APP_VERSION': JSON.stringify(
 					process.env.VITE_SVELTEKIT_APP_VERSION
 				),
-				'import.meta.env.GOOGLE_CLIENT_ID': JSON.stringify(process.env.GOOGLE_CLIENT_ID)
+				'import.meta.env.GOOGLE_CLIENT_ID': process.env.GOOGLE_CLIENT_ID
 			},
 			esbuild: {}
 		}
