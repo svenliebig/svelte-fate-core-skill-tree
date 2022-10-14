@@ -6,6 +6,7 @@
   export let inline: boolean = false;
   export let disabled: boolean = false;
   export let value: string = '';
+  export let inputClass: string = '';
 
   let clazz: string = '';
   export { clazz as class };
@@ -27,7 +28,7 @@
 
   <input
     {id}
-    class="grow {disabled ? 'bg-blue-100/25' : 'bg-blue-100'} p-1 {inline
+    class="grow {inputClass} {disabled ? 'bg-blue-100/25' : 'bg-blue-100'} p-1 {inline
       ? label
         ? 'rounded-r-md'
         : 'rounded-md'

@@ -17,6 +17,7 @@
   let form: SkilltreeForm = {
     name: '',
     beschreibung: '',
+    erhohlungsrate: '',
     konzept: '',
     dilemma: '',
     aspekte: ['', '', ''],
@@ -29,7 +30,12 @@
     ],
     extras: '',
     stunts: '',
-    level: 0
+    level: 0,
+    konsequenzen: {
+      leicht: ['', ''],
+      mittel: '',
+      schwer: ''
+    }
   };
 
   onMount(() => {
@@ -70,7 +76,12 @@
         <Textarea label="Beschreibung" bind:value={$formStore.beschreibung} class="h-20" />
       </div>
       <div class="w-2/6 sm:w-1/4 lg:w-1/6 pl-2 pb-2">
-        <Textarea label="Erhohlungsrate" class="h-full" />
+        <Input
+          label="Erhohlungsrate"
+          class="h-full"
+          inputClass="text-6xl text-center"
+          bind:value={$formStore.erhohlungsrate}
+        />
       </div>
     </div>
   </div>
@@ -181,12 +192,12 @@
     <SectionHeader>Konsequenzen</SectionHeader>
     <div class="w-full flex flex-col sm:flex-row">
       <div class="w-full sm:w-1/2">
-        <Input label="Leicht" inline />
-        <Input label="Mittel" inline />
-        <Input label="Schwer" inline />
+        <Input label="Leicht" inline bind:value={$formStore.konsequenzen.leicht[0]} />
+        <Input label="Mittel" inline bind:value={$formStore.konsequenzen.mittel} />
+        <Input label="Schwer" inline bind:value={$formStore.konsequenzen.schwer} />
       </div>
       <div class="w-full sm:w-1/2 sm:pl-2">
-        <Input label="Leicht" inline />
+        <Input label="Leicht" inline bind:value={$formStore.konsequenzen.leicht[1]} />
       </div>
     </div>
   </div>
