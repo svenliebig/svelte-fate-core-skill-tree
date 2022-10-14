@@ -1,6 +1,8 @@
 import adapter from '@sveltejs/adapter-auto';
 import preprocess from 'svelte-preprocess';
 
+console.log(process.env);
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
